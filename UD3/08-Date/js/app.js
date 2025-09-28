@@ -2,7 +2,7 @@
 //declaración variables y constantes
 const fechaHoy=new Date();
 const fechaMilis=new Date(676767676767676);
-const fechaCadena=new Date('12/12/2025');
+const fechaCadena=new Date('12/13/2025');
 const fechaParam=new Date(2025,8,25,12,23,43);
 
 // Mostrar fechas en diferentes formatos
@@ -15,10 +15,16 @@ document.writeln(`<br>La fecha con Parámetros: ${fechaParam}`);
 //mostrar fecha con diferentes formatos
 document.writeln(`<h3>Fecha con Formatos</h3>`);
 document.writeln(`La fecha de hoy (formato local): ${fechaHoy.toLocaleDateString()}`);
+// document.writeln(`<br>La fecha de hoy (formato local): ${fechaHoy.toLocaleDateString('es-ES', {
+//   weekday: "long",
+//   year: "numeric",
+//   month: "short",
+//   day: "numeric",
+// } )}`);
 document.writeln(`<br>La fecha en milisengundos: ${fechaMilis.toDateString()}`);
 document.writeln(`<br>La fecha de cadena (día-mes-año): ${fechaCadena.getDate()}-${fechaCadena.getMonth()+1}-${fechaCadena.getFullYear()}`);
 document.writeln(`<br>Hora de fecha con parámetros: ${fechaParam.toLocaleTimeString()}`);
-ocument.writeln(`<br></vbr>Formato ISO de hoy: ${fechaHoy.toISOString()} `);
+document.writeln(`<br></vbr>Formato ISO de hoy: ${fechaHoy.toISOString()} `);
 
 // Sumar 24 días a la fecha actual
 const fechaSumada = new Date(fechaHoy);

@@ -6,4 +6,4 @@ console.log("Host (dominio y puerto):", location.host);
 console.log("Hostname (solo dominio):", location.hostname);
 console.log("Puerto:", location.port);
 console.log("Ruta del archivo (path):", location.pathname);
-console.log("Cadena de consulta (query string):", location.search);
+console.log("Cadena de consulta (query string):", location.search); //Es la parte que sigue a la ? de la URL, normalmente se  establecen los parámetros
