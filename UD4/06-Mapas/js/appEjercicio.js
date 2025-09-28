@@ -47,34 +47,18 @@ const isCorrectNom=(texto)=>{
  * @description Crea el mapa con el nombre y la puntuación, hasta que se pulse cancelar en el nombre
  */
 const crearMapa = () => {
-  let nomJugador = isCorrectNom("Introduzca nombre del jugador, [Cancelar->Fin]");
-  while (nomJugador != null ) {
-    let puntuacion = isNumero(`Introduzca la puntuación del jugador ${nomJugador}`);
-    //añadir al mapa
-    calificacion.set(nomJugador, puntuacion)
-    nomJugador = isCorrect("Introduzca nombre del jugador");
-  }
+  
 };
 
 /**
  * @description ordena el mapa a través de un array y lo vuelve a pasar al mapa
  */
 const ordenarMapa=()=>{
-    const aJugadores=[...calificacion]; //crear un array con los datos del mapa
-    aJugadores.sort((a,b)=>a[1]-(b[1])); //ordenar de menor a mayor por puntuación
-    //borrar el mapa
-    calificacion.clear(); //limpia el mapa
-
-    aJugadores.forEach(elemento=>{ //carga del array al mapa
-        calificacion.set(elemento[0], elemento[1])
-    })
+    
 }
 
 const mostrarMapa=()=>{
-    //recorrer el mapa y mostrar elcontenido
-    for (const [nombre,puntuacion] of calificacion) {
-        console.log(`El jugador ${nombre} y la puntuación es ${puntuacion}`);
-    }
+    
 }
 
 //script
