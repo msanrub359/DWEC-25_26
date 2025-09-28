@@ -1,29 +1,7 @@
 "use strict"
 
 function crearCalculadora() {
-    let total = 0;  // Variable privada que almacena el total
-  
-    return {
-      // Método para sumar
-      sumar: function(cantidad) {
-        total += cantidad;
-        return total;
-      },
-      // Método para restar
-      restar: function(cantidad) {
-        total -= cantidad;
-        return total;
-      },
-      // Método para obtener el valor actual del total
-      obtenerTotal: function() {
-        return total;
-      },
-      // Método para reiniciar el valor total a 0
-      reiniciar: function() {
-        total = 0;
-        return total;
-      }
-    };
+   
   }
   
   // Crear una nueva calculadora
