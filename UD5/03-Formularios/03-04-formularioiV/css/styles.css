@@ -1,0 +1,22 @@
+input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+input.error {
+  border-color: red;
+}
+span.error {
+  color: red;
+  font-size: 0.9rem;
+  display: block;
+  min-height: 1.2em;
+  margin-top: 0.2rem;
+}
+
+button:disabled {
+  background: #aaa;
+  cursor: not-allowed;
+}
+button:not(:disabled):hover {
+  background: #0056d2;
+}
