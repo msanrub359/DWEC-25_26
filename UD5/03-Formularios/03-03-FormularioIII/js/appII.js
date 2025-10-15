@@ -16,23 +16,7 @@ const FormularioModule = (() => {
       edad.addEventListener("focusout", comprobarEdad);
     });
   };
-/**
- * @description configurar captcha
- */
-  const activarCaptcha = () => {
-    return new Promise((resolve, reject) => {
-      grecaptcha.ready(() => {
-        grecaptcha
-          .execute("6LfVXr8UAAAAAMS-4Ar9OHK7RLug-6H6n_qxwo1L", { action: "submit" })
-          .then(token => {
-            console.log("Token reCAPTCHA:", token);
-            document.querySelector("#recaptcha").value = token;
-            resolve(token); // devolvemos el token
-           })
-          .catch(err => reject(err));
-      });
-    });
-};
+
   // Validación del formulario
   const validar = async(evento) => {
     evento.preventDefault(); // Evita envío del formulario
@@ -43,7 +27,7 @@ const FormularioModule = (() => {
     console.log({ erroresInputs, erroresRadios });
 
     if (!erroresInputs && !erroresRadios) { //Si no hay errores (false) está todo correcto
-      await activarCaptcha();
+      
       const spinner = document.querySelector("#spinner");
       const exito = document.querySelector("#exito");
 
@@ -122,4 +106,5 @@ const FormularioModule = (() => {
 
 })();
 // Iniciar módulo
+
 FormularioModule.init();
