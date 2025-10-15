@@ -32,37 +32,27 @@ const PintarInputsModule = (() => {
 
   /** Evento: el ratón entra en el input */
   const overMouse = (e) => {
-    e.target.style.background = "#608ae5";
+   
   };
 
   /** Evento: el ratón sale del input */
   const outMouse = (e) => {
-    e.target.style.background = "";
+    
   };
 
   /** Evento: se pulsa un botón del ratón */
   const downMouse = (e) => {
-    //  e.preventDefault();
-    console.log("mousedown:", e);
-  
-    if (e.buttons === 1) { // botón izquierdo
-      pintar = true;
-      colorOrig = e.target.style.background; // guardar color original
-     
-    }
+    
   };
 
   /** Evento: se suelta el botón del ratón */
   const upMouse = (e) => {
-    pintar = false;
-    e.target.style.background = colorOrig; // restaurar color original
+    
   };
 
   /** Evento: se mueve el ratón sobre el input */
   const moveMouse = (e) => {
-    if (pintar) {
-      e.target.style.background = "yellow";
-    }
+    
   };
 
   // Exponer solo init públicamente
@@ -71,3 +61,4 @@ const PintarInputsModule = (() => {
 
 // Iniciar módulo
 PintarInputsModule.init();
+
