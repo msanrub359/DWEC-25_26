@@ -13,16 +13,16 @@ let edad = "18",
     altura = "170cm"; 
 
 // 4. Intentar sumar edad y altura`
-const total = edad + altura; 
+const total = parseInt(edad) + parseInt(altura); 
 console.log(`Suma de edad y altura: ${total}` ); 
 
 // 5. Intentar corregir la suma convirtiendo altura a número
 const alturaNumerica = altura; 
-const sumaCorregida = edad + alturaNumerica;
+const sumaCorregida = parseInt(edad) + parseInt(alturaNumerica);
 console.log(`Suma corregida de edad y altura: ${sumaCorregida}`); 
 
 // 6. Uso de condicionales para comprobar si una persona es mayor de edad
-if (edad === 18) { 
+if (parseInt(edad) === 18) { 
     console.log("La persona tiene exactamente 18 años");
 } else if (edad > 18) {
     console.log("La persona es mayor de edad");
@@ -31,7 +31,7 @@ if (edad === 18) {
 }
 
 // 7. Contar del 1 al 5
-for (let i = 0; i < 5; i++) {
+for (let i = 1; i <= 5; i++) {
     console.log(`Contador: ${i}`); 
 }
 
@@ -39,8 +39,8 @@ for (let i = 0; i < 5; i++) {
 
 // 8. Intentar acceder a una variable 
 const apellidos="Pérez Montes";
-console.log(`El valor de la variable 'apellido' es: ${ apellido}`); // Error: 'apellido' no está definida
+console.log(`El valor de la variable 'apellido' es: ${ apellidos}`); // Error: 'apellido' no está definida
 
 // 10. Corregir un número decimal mal formateado
-let precio = 20,5; 
+let precio = 20.5; 
 console.log(`El precio es: ${precio}`);

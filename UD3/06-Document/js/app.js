@@ -1,7 +1,7 @@
 "use strict"
 
 // Usando document.write para mostrar un encabezado
-document.writeln("<h1>Información del Navegador y la Pantalla</h1>");
+document.write("<h1>Información del Navegador y la Pantalla</h1>");
 
 // Usando document.writeln para escribir en una línea
 document.writeln("Este script utiliza document.write() y document.writeln().<br>");

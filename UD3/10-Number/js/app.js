@@ -5,26 +5,26 @@ const num1 = new Number(23),
       numeroEjemplo= 123.456789;
 let numDato;
 //mostrar igualdad
-console.log(num1 === num2 ? "son iguales" : "no son iguales");
-console.log(`typeof num1 ${typeof num1} -  typeof num2 ${typeof num2}`);
+// console.log(num1 === num2 ? "son iguales" : "no son iguales");
+// console.log(`typeof num1 ${typeof num1} -  typeof num2 ${typeof num2}`);
 
-//entrada de números, controlando que debe ser un número y no debe estar vacío. Null se anula la entrada
+//entrada de números, controlando que debe ser un número y no debe estar vacío
 numDato =prompt("Introduzca un número");
 
-while (isNaN(numDato) || (numDato !== null && numDato.trim() === "")) {
+while (isNaN(numDato) || numDato !== null && numDato.trim() === "") {
   //dato erróneo
   numDato = prompt("Error, debe ser un número\nIntroduzca un número");
 }
-//mostrar si es número, la suma del número +50
+
 if (numDato !== null) {
   console.log(
     `La suma del número ${numDato} +50 es= ${Number(numDato) + 50}`
   );
 }
 
-document.writeln(`<h1>Ejemplo del Objeto Number en JavaScript</h1>`);
+// document.write(`<h1>Ejemplo del Objeto Number en JavaScript</h1>`);
 
-// Usando toFixed() para formatear el número a un número específico de decimales
+// // Usando toFixed() para formatear el número a un número específico de decimales
 document.writeln(`<strong>Original:</strong> ${numeroEjemplo}<br>`);
 document.writeln(`<strong>toFixed(2):</strong> ${numeroEjemplo.toFixed(2)}<br>`);
 document.writeln(`<strong>toFixed(4):</strong> ${numeroEjemplo.toFixed(4)}<br><br>`);

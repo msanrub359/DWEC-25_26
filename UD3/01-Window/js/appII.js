@@ -6,6 +6,8 @@ let ventana;
 //abrir subventana
 function crearVent() {
   if (ventana==undefined || ventana.closed) {//devuelve true si está cerrada y false se está abierta
+    
+
     ventana = window.open("", "secundaria", "width=200,height=200");
     //añadir título y botón a la ventana secundaria
     ventana.document.writeln("<h1>Ventana secundaria</h1>");

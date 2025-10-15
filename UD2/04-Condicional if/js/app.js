@@ -1,7 +1,7 @@
 "use strict";
 //declarar las variables globales al script
 const numero = "123";
-let valor;
+let valor='hola';
 
 
 //condicional en una sola línea
@@ -22,4 +22,4 @@ if (numero === 123) {
 console.log(numero===123 ? 'Los números son iguales': 'Los números no son iguales');
 
 //operador lógico Null coalescing
-console.log(`Null Coalescing $(valor?? true)`);
+console.log(`Null Coalescing ${valor?? true}`);

@@ -9,7 +9,7 @@ for (let index = 65; index <=90; index++) {
     }
 }
 
-document.write(`<br>---Abecedario aleatorio---<br>`);
+document.writeln(`<br>---Abecedario aleatorio---<br>`);
 //mostrar 20 letras del abecedario de forma aleatoria
 for (let index = 1; index <=20; index++) {
     //convertir el código ascii a carácter
