@@ -47,7 +47,7 @@ if (findFind!=undefined){
 }else{
     console.log('No Existe');
 }
-//6 forma -findIndex() devuelve true o false
+//6 forma -findIndex() devuelve el índice
 const findFindIndex=aProvincias.findIndex(provincia=>provincia=='Málagas')
 console.log({findFindIndex});
 if (findFindIndex>-1){

@@ -7,7 +7,7 @@ const electro={
     color:'red'
 }
 //congelar
-// Object.freeze(electro); //no permite modificar la estructura, ni el contenido el objeto
+ Object.freeze(electro); //no permite modificar la estructura, ni el contenido el objeto
 // electro.disponible=true;
 // electro.nombre="Horno"; //No permite
 

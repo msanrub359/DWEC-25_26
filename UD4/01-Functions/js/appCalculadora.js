@@ -2,16 +2,21 @@
 
 let total = 0; // Variable privada que almacena el total
 
-
-
- // función declarativa
- 
+/**
+ * @description permite realizar la suma 
+ * @param {number} cantidad 
+ * @returns {number} retorn el total
+ */
 function sumar(cantidad) {
   total += cantidad;
   return total;
 }
 
-// expresión de función
+/**
+ * @description permite realizar la resta
+ * @param {number} cantidad 
+ * @returns {number} retorna el total
+ */
 const restar = function (cantidad) {
   total -= cantidad;
   return total;

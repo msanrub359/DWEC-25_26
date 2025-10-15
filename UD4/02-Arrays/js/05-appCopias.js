@@ -15,7 +15,7 @@ const aCopiaSpreadII=["uno", "dos", ...aNumeros, "seis"];
 const aCopiaSlice=aNumeros.slice();
 
 aNumeros.push(100); //añadir un elemento al array aNumeros
-
+aCopia.push(200);
 console.log(aCopia, aNumeros, aCopiaSpread,aCopiaSpreadII);//, aCopiaSlice);
 
 

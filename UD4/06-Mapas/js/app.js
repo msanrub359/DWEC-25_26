@@ -2,7 +2,7 @@
 /**
  * @description Los mapas son estructuras que permiten almacer una 
  * colección de datos organizados en forma de pares "clave-valor",
- * en las cuales, la clave no puede duplicada
+ * en las cuales, la clave no puede ser duplicada
  */
 
 //crear un mapa

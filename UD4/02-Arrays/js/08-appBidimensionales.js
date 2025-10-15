@@ -10,7 +10,7 @@ console.log(`El electrodomético es ${aElectrodomesticos[2][0]} el precio es ${a
 
 for (let index = 0; index < aElectrodomesticos.length; index++) {
    
-        console.log(`El electrodomético es ${aElectrodomesticos[index][0]} el precio es ${aElectrodomesticos[index][1]}`); 
+        console.log(`El electrodomético es ${aElectrodomesticos[index][0]} el precio es ${aElectrodomesticos.at(index).at(1)}`); 
    
     
 }

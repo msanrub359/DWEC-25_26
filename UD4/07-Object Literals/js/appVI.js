@@ -29,11 +29,11 @@ console.log(electro.informacion);
  
 //destructuring
 //extraer en una variable el objeto informacion
-// const {informacion}=electro;
+ const {informacion}=electro;
 // // const informacion=electro.informacion
 // console.log({informacion});
 // //extraer en una variable el objeto medidas
-//  const {informacion:{medidas}}=electro;
+ const {informacion:{medidas}}=electro;
 //  console.log({medidas});
 // //extraer en una variable la propiedad altura
 // const {informacion:{medidas:{altura}}}=electro;

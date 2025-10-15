@@ -1,24 +1,24 @@
-"use strict";
+"use strict"
+/**
+ * propiedades y métodos privados
+ * Encapsulación: los datos no pueden ser leídos, ni modificados desde fuera
+ * Seguridad: Evita manipular directamente el estado interno del objeto
+ * Control: el acceso debe hacerser a través de métodos públicos (getters y setters)
+ */
 
-export class Alumno{
+class Alumno{
     //declarar los atributos privados
     #nombre;
     #apellidos;
     #edad;
     #modulos;
-
-
-	
-
-   constructor(nom, ape, edad){
+    constructor(nom, ape, edad){
         this.#nombre=nom;
         this.#apellidos=ape;
         this.#edad=edad;
         this.#modulos =[];
     };
     
-
-
     
     //getter y setter
     get nombre(){
@@ -49,6 +49,9 @@ export class Alumno{
         };
         this.#edad=value;
     }
+    mostrarModulos(){
+        return this.#modulos.join(" - ")
+    }
     /**
      * description retorna una cadena con los datos personales del alumno
      * @returns {string} la cadena
@@ -61,24 +64,26 @@ export class Alumno{
      * @param {string} modulo 
      */
     addModulo(modulo){
-        const aModulos=['DWEC', 'DWES', 'DIW', 'DAW', 'INGLÉS', 'PROYECTO', 'IPEII']
-        //controlar que el módulo solo pueda ser DWEC, DWES, DIW, DAW, INGLÉS, PROYECTO, IPEII
         if (!modulo || modulo.trim()===""){
             throw new Error("El módulo no puede estar vacío");
         }
-        const existeMod=aModulos.find(modul=>modul===modulo.toLocaleUpperCase())
-        if (!existeMod){
-            throw new Error("El módulo no existe");
-        }
         //añadir el módulo al array
-        this.#modulos.push(modulo.toLocaleUpperCase());
+        this.#modulos.push(modulo);
     }
     listModulos(){
         return this.#modulos.join(", ") || 'No existen módulos'; //join convierte el array en cadena, concatenando todos los elementos separados por (, ) y espacioen blanco. Si el array está vacío ([]), devuelve la cadena 'No existen....'
     }
-    //crear método static para crear el objeto
-    static crearAlumno(nombre, apellidos, edad){
-        return new Alumno(nombre, apellidos, edad);
-    }
+}
 
+//cuerpo del script
+try {
+    const alumno= new Alumno("María", "López Ruiz", 1);
+    alumno.edad=12;
+    alumno.addModulo("DWES");
+    alumno.addModulo("DWEC");
+    console.log(alumno.toString());
+    console.log(alumno.listModulos());
+    console.log(alumno instanceof Alumno);
+} catch (error) {
+    console.log(error);
 }

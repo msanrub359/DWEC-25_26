@@ -1,6 +1,6 @@
 "use strict"
 
-export const mensaje="Hola a todos";
+export const mensaje="<strong>Hola a todos</strong>";
 
 export const calcularMedia=()=>{
   return('Hola desde el módulo');

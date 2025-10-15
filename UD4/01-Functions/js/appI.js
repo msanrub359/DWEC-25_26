@@ -25,6 +25,6 @@ const multiplicarIV=(a,b)=>a*b;
 //cuerpo script
 
 console.log(multiplicar(5));
-console.log(multiplicarII(5));
+console.log(multiplicarII(5,6));
 console.log(multiplicarIII(5,6));
 console.log(multiplicarIV(5,6));

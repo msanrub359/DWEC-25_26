@@ -9,9 +9,9 @@ const electro={
 }
 // //sellar
  Object.seal(electro); //no permite modificar la estructura pero sí el contenido
-//  electro.disponible=true; //error
-//  electro.color=100; //error
-//  console.log({electro});
+//   electro.disponible=true; //error
+  electro.precio=100; 
+  console.log({electro});
 if (Object.isSealed(electro)){ //Devuelve true si está sellado
     electro.nombre="Horno"; 
     console.log(electro);

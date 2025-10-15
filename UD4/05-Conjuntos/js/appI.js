@@ -26,9 +26,9 @@ conjuntoIV.forEach(function(elemento){
 //eliminar el contenido del conjunto
 //conjuntoIV.clear();
 //calcular tamaño
-console.log(conjuntoIV.size);
+console.log("longitud", conjuntoIV.size);
 //búsqueda de un elemento
-console.log(conjuntoIV.has(20));
+console.log("Búsqueda conjuntoIV", conjuntoIV.has(20));
 console.log(conjuntoIV);
 //convertir un conjunto en un array
 const aNum=[...conjuntoIV];

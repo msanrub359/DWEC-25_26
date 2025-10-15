@@ -1,9 +1,25 @@
 "use strict"
 
 function crearCalculadora() {
-   
+   let total=0;
+   return{
+    sumar:function(cantidad) {
+      total += cantidad;
+      return total;
+     },
+     restar:function(cantidad) {
+      total -= cantidad;
+      return total;
+     },
+     obtenerTotal:function() {
+        return total;
+     },
+    reiniciar:function() {
+      total =0;
+      return total;
+     }
   }
-  
+} 
   // Crear una nueva calculadora
   const calculadora = crearCalculadora();
   

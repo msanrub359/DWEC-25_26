@@ -8,13 +8,14 @@
  * 
  */
 
-
+ //Chat es el sujeto. El objeto que está observado
+ //Clase tiene la lista de suscriptores y les notifica el cambio
 class Chat {
   #mensajes;
   #usuarios;
   constructor() {
-    this.#mensajes = [];
-    this.#usuarios= [];
+    this.#mensajes = []; //histórico de mensajes
+    this.#usuarios= []; //usuarios
   }
 
   addUsuario(usuario) {
@@ -22,10 +23,11 @@ class Chat {
   }
 
   removeUsuario(usuario) {
-    const index = this.#usuarios.findIndex(usu=usu==usuario);
-    if (index !== -1) {
-      this.#usuarios.splice(index, 1);
-    }
+    // const index = this.#usuarios.findIndex(usu=usu==usuario);
+    // if (index !== -1) {
+    //   this.#usuarios.splice(index, 1);
+    // };
+     this.#usuarios = this.#usuarios.filter(user => user !=usuario);
   }
 
   sendMensaje(mensaje) {
@@ -39,7 +41,7 @@ class Chat {
     });
   }
 }
-
+//ChatUser es el observador. Reacciona ante los cambios
 class ChatUser {
   #usuario;
   constructor(usuario) {

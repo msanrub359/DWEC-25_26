@@ -7,6 +7,7 @@ const electro={
     nombre:'Frigorífico',
     precio:300,
     color:'red',
+     altura:'2m',
     //método
     toString: function(){
         return `El electrodomestico es ${this.nombre} y el precio es ${this.precio} y tienen el color ${this.color}`;
@@ -14,7 +15,7 @@ const electro={
 }
 const medidas={
     peso:'60 Kg',
-    altura:'2m',
+    altura:'4m',
     
 }
 
