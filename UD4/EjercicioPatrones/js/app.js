@@ -14,7 +14,7 @@ const SensorModule = (()=>{
             return this.#id;
         }
         addObserver(observer){
-            if (!this.#observers.include(observer)){
+            if (!this.#observers.includes(observer)){
                 this.#observers.push(observer)
             }
         }
@@ -43,8 +43,58 @@ const SensorModule = (()=>{
         }  
 
     }
+    // crear la clase del AnalogSensor que hereda de Sensor
+    class AnalogSensor extends Sensor{
+        #tipo;
+        constructor(id){
+            super(id);
+            this.#tipo = "analog"
+        }  
+        lectura(){
+            //simular la temperatura
+            const temp=(Math.random()* (30-15+1))+15
+            //llamar al método notificar de la clase base Sensor
+            this.notificar({id:this.id, tipo:this.#tipo, value:temp.toFixed(2)})
+        }  
+
+    }
+    //clase SensorFactory
+    class SensorFactory{
+        static crearSensor(tipo, id){
+            switch (tipo.toLocaleLowerCase()){
+                case 'digital':
+                    return new DigitalSensor(id);
+                case 'analog':
+                    return new AnalogSensor(id);
+            }
+        }
+    }
+    //Crear la clase observador Monitor. Receptor de las notificaciones
+    class Monitor{
+        #sensors;
+        constructor (){ //Singlenton
+            if (Monitor.instance){
+                return Monitor.instance
+            }
+            this.#sensors =[];
+            Monitor.instance=this;
+        }
+        addSensor(sensor){
+           this.#sensors.push(sensor) ;
+           sensor.addObserver(this);
+        }
+        delSensor(sensor){
+            this.#sensors=this.#sensors.filter(sen=>!sen !==sensor);
+            sensor.removeObserver(this);
+        }
+        //Método de notificaciones. Es llamado automáticamente por los sensores
+        update(data){
+            console.log(`Monitor recibió datos: Sensor: ${data.id}, tipo: ${data.tipo}, temperatura: ${data.value}`);
+        }
+    }
     return{
-        Monitor
+        Monitor,
+        SensorFactory
     }
 
 })()
@@ -61,7 +111,7 @@ const sensor3 = SensorModule.SensorFactory.crearSensor("digital", 3);
 monitor.addSensor(sensor1);
 monitor.addSensor(sensor2);
 monitor.addSensor(sensor3);
-
+console.log(monitor);
 //Simular las lecturas de los sensores
 setInterval(()=>{
     sensor1.lectura();
