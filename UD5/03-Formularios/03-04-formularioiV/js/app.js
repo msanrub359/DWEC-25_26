@@ -26,7 +26,10 @@ const FormularioModule =(()=>{
         });
         provincia.addEventListener("change", comprobar)
         radios.forEach(radio=>{
-            radio.addEventListener("change", validarRadios);
+            radio.addEventListener("change", (e)=>{
+                validarRadios(e);
+                habilitarSubmit()
+        });
           
         })
         
@@ -82,12 +85,13 @@ const FormularioModule =(()=>{
         const seleccionado =[...radios].some(radio=>radio.checked);
         const errorTipo=document.querySelector("#errortipo");
         errorTipo.textContent=seleccionado ? "": "Seleccione una opción";
-        habilitarSubmit()
         return seleccionado;
     }
     const habilitarSubmit =()=>{
         console.log(form.checkValidity());
-         btnEnviar.disabled= !form.checkValidity()
+        const valido= form.checkValidity() && validarRadios()
+        //habilita o deshabilita el botón
+         btnEnviar.disabled= !valido
     }
     
 
