@@ -1,6 +1,7 @@
+
 "use strict";
 
-const LocalStorage = (() => {
+const SessionStorage = (() => {
   //declaración variables, funciones y eventos
   let clave, valor, mostrar;
   const passw = "Clave&12_23";
@@ -20,22 +21,22 @@ const LocalStorage = (() => {
     });
   };
   /**
-  * Añade un nuevo elemento al localStorage (encriptado)
+  * Añade un nuevo elemento al SessionStorage (encriptado)
   */
   const addCookie = () => {
     //encriptar
     const valorEncriptado = CryptoJS.AES.encrypt(valor.value, passw).toString();
-    localStorage.setItem(clave.value.toLocaleLowerCase(), valorEncriptado);
+    sessionStorage.setItem(clave.value.toLocaleLowerCase(), valorEncriptado);
     //limpiar campos
     clave.value = "";
     valor.value = "";
   };
 /**
-   * Elimina un elemento del localStorage
+   * Elimina un elemento del SessionStorage
    */
   const delCookie = () => {
-    if (localStorage.getItem(clave.value.toLocaleLowerCase()) != null) {
-      localStorage.removeItem(clave.value.toLocaleLowerCase());
+    if (sessionStorage.getItem(clave.value.toLocaleLowerCase()) != null) {
+      sessionStorage.removeItem(clave.value.toLocaleLowerCase());
       mostrar.textContent = "cookie borrada";
     } else {
       mostrar.textContent = "cookie no existe";
@@ -43,10 +44,10 @@ const LocalStorage = (() => {
   };
 
   /**
-   * Busca y desencripta un elemento del localStorage
+   * Busca y desencripta un elemento del SessionStorage
    */
   const findCookie = () => {
-    const dato = localStorage.getItem(clave.value.toLocaleLowerCase());
+    const dato = sessionStorage.getItem(clave.value.toLocaleLowerCase());
     if (valor.value == "" || dato == null) {
      mostrar.textContent = "cookie no existe";
     } else {
@@ -54,13 +55,13 @@ const LocalStorage = (() => {
     }
   };
   /**
-   * Lista todos los elementos del localStorage
+   * Lista todos los elementos del SessionStorage
    */
   const listCookie = () => {
     let listar = "<h2>Listado de cookies</h2><ul>";
     
-    for (let index = 0; index <localStorage.length; index++) {
-      listar +=`<li><strong></strong>${localStorage.key(index)}:  ${desencriptar(localStorage.getItem(localStorage.key(index)))}</li>`
+    for (let index = 0; index < sessionStorage.length; index++) {
+      listar +=`<li><strong></strong>${sessionStorage.key(index)}:  ${desencriptar(sessionStorage.getItem(sessionStorage.key(index)))}</li>`
        
     }
     listar+="</ul>"
@@ -81,4 +82,4 @@ const LocalStorage = (() => {
   };
 })();
 
-LocalStorage.init();
+SessionStorage.init();

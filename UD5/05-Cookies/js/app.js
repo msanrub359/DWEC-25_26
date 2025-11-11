@@ -1,16 +1,20 @@
 "use strict";
-const Cookies = () => {
-  let clave, valor;
+const Cookies = (() => {
+  let clave, valor, capa
   const init = () => {
     document.addEventListener("DOMContentLoaded", () => {
+
+      //establcer los elementos de DOM
+      clave = document.querySelector("#clave");
+      valor = document.querySelector("#valor");
+      capa = document.querySelector("#capa");
+
       //establecer los eventos
-      document.getElementById("crear").addEventListener("click", crearCookie);
-      document.getElementById("buscar").addEventListener("click", buscarCookie);
-      document.getElementById("listar").addEventListener("click", listarCookie);
-      document.getElementById("eliminar").addEventListener("click", delCookie);
-      //establcer los objetos input de clave y valor
-      clave = document.getElementById("clave");
-      valor = document.getElementById("valor");
+      document.querySelector("#crear").addEventListener("click", crearCookie);
+      document.querySelector("#buscar").addEventListener("click", buscarCookie);
+      document.querySelector("#listar").addEventListener("click", listarCookie);
+      document.querySelector("#eliminar").addEventListener("click", delCookie);
+
     });
   };
 
@@ -27,66 +31,101 @@ const Cookies = () => {
     // console.log(fechaActual.toUTCString())
     // document.cookie=`${clave.value}=${valor.value};expires=${fechaActual.toUTCString()};Secure;SameSite="Strict"`;
 
-    //max-age en segundos
-    document.cookie = `${clave.value}=${valor.value};max-age=40;Secure;SameSite="Strict"`;
-    limpiar();
-  };
-  const limpiar = () => {
-    //seleccionar todos los input del body
-    const inputText = document.getElementsByTagName("input");
-    //recorrer los input
+    // Crear cookie con codificación adecuada
+    // max-age: duración en segundos (60 = 1 minuto)
+    // Secure: solo por HTTPS (comentado para desarrollo local)
+    // SameSite: protege contra ataques CSRF (Cross-Site Request Forgery); Evitar que un atacante mediante un usuario autenticado ejecute
+    //           acciones no deseadas en una aplicación en la que se ha iniciado una sesión.
+    // path: disponible en todo el dominio
 
-    for (const element of inputText) {
-      element.value = "";
-    }
+    //encodeURIComponent() en JavaScript se usa para codificar un valor de texto de modo que pueda
+    //  ser transmitido de forma segura dentro de una URL o guardado en una cookie, sin que caracteres especiales
+    //  causen errores o se interpreten incorrectamente
+    const cookieString = `${encodeURIComponent(clave.value).toLocaleLowerCase()}=${encodeURIComponent(valor.value)};max-age=3600;SameSite=Strict;path=/`;
+
+    // Para desarrollo local sin HTTPS, omitir Secure
+    // En producción con HTTPS, añadir: ;Secure
+    document.cookie = cookieString;
+    
+     limpiar();
   };
+
+  /**
+   * @description  Limpiar solo los inputs de texto dentro del formulario
+   */
+  const limpiar = () => {
+
+    const inputText = document.querySelectorAll("input[type='text'");
+    //recorrer los input
+    inputText.forEach(input => input.value = "")
+  };
+
+  /**
+   * @description mostrar las cookies
+   */
   const listarCookie = () => {
     let mostrar = "<h2>Listado de cookies</h2>";
-    //document.cookie lee las cookies del sitio
     console.log(document.cookie);
-    if (document.cookie !== "") {
-      const aCookies = document.cookie.split("; ");
-      aCookies.forEach((elemento) => {
-        mostrar += `${elemento}<br>`;
-      });
+    const aCookies = document.cookie ? document.cookie.split("; ") : [];
+
+  
+    if (aCookies.length === 0) {
+      mostrar += "<p>No hay cookies guardadas.</p>";
     } else {
-      mostrar += "No hay cookies";
+      mostrar += "<ul>";
+      aCookies.forEach(cookie => {
+        const [ clave, valor ] = cookie.split("="); //separar la clave y el valor
+        mostrar += `<li><strong>${decodeURIComponent(clave)}</strong>: ${decodeURIComponent(valor)}</li>`;
+      })
+      mostrar += "</ul>";
+
+
     }
-    document.getElementById("capa").innerHTML = mostrar;
+    capa.innerHTML = mostrar;
   };
+  /**
+   * @description Buscar la cookie por la clave
+   * @returns {boolean}
+   */
   const buscarCookie = () => {
-    let mostrar = "La cookie no existe";
-    if (clave.value.trim().length !== 0) {
-      //Si la clave no está vacía
-      if (document.cookie !== "") {
-        //Si hay cookies
-        const aCookies = document.cookie.split("; "); //crear un array con las cookies
-        let i = 0,
-          aDatos;
-        do {
-          aDatos = aCookies[i].split("="); //separo la clave y el valor
-          if (aDatos[0] === clave.value) {
-            mostrar = aDatos[1];
-          }
-          i++;
-        } while (i < aCookies.length && aDatos[0] !== clave.value);
-      }
-      valor.value = mostrar;
+    
+   
+    if (clave.value.trim().length === 0){
+      capa.textContent= 'Introduce una clave para buscar';
+      return false
+    } 
+    const aCookies = document.cookie ? document.cookie.split("; ") : [];
+    if (aCookies.length == 0) {
+      capa.textContent= 'No hay cookies';
+      return false
     }
-    return mostrar;
+    //buscar
+    const cookieFind =aCookies.find(cookie =>{
+      const [claveCookie] = cookie.split("=");
+      return decodeURIComponent(claveCookie) === clave.value.toLocaleLowerCase();
+    })
+        
+  if (cookieFind){ //Si la clave está en la cookie
+     const [,cookieValor] = cookieFind.split("="); //extraemos el valor
+     valor.value=decodeURIComponent(cookieValor);
+    return true
+  }else{
+    capa.textContent="La cookie no existe"
+  } return false
+   
   };
+
+
   const delCookie = () => {
-    if (buscarCookie() !== "La cookie no existe") {
-      document.cookie = `${clave.value}=;max-age=-1`;
+    if (buscarCookie()) {
+      document.cookie = `${encodeURIComponent(clave.value).toLocaleLowerCase()}=;max-age=-1;path=/`;
       valor.value = "Cookie borrada";
-    } else {
-      valor.value = "Cookie no encontrada";
-    }
+    } 
   };
 
   return {
     init,
   };
-};
+})();
 
 Cookies.init();
