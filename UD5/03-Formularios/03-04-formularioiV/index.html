@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="../../../assets/css/style.css" />
   <link rel="stylesheet" href="./css/styles.css">
   <link rel="stylesheet" href="../../../assets/css/loader.css">
+  <link rel="stylesheet" href="../../../assets/librerias/sweetAlert/sweetalert2.min.css">
 
 </head>
 
@@ -47,7 +48,8 @@
         <option value="Jaén">Jaén</option>
       </select>
       <span class="error" id="errorprovincia" aria-live="polite"></span>
-
+     <!-- campo oculto -->
+      <input type="hidden" name="captcha" id="captcha">
       <div>
         <button class="botons botonsFormVal" id="enviar" disabled>Enviar</button>
         <button class="botons botonsFormVal botonCancelar" type="button" id="cancelar">Cancelar</button>
@@ -61,8 +63,9 @@
 
   </section>
   <div>
-
-    <script src="./js/appConstraint.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=6LfzsvwrAAAAALPNjd_GE_4kIsBkKOpVVRh3Fp3c"></script>
+    <script src="../../../assets/librerias/sweetAlert/sweetalert2.all.min.js"></script>
+    <script src="./js/app.js"></script>
     <noscript>El navegador no soporta JavaScript</noscript>
   </div>
 </body>

@@ -11,7 +11,7 @@ const FormularioModule = (() => {
 
       formulario.addEventListener("submit", validar);
       btnCancelar.addEventListener("click", limpiar);
-      edad.addEventListener("focusout", comprobarEdad);
+      edad.addEventListener("focusout", comprobarEdad); //al peder el foco el input de edad
     });
   };
 
@@ -49,8 +49,9 @@ const FormularioModule = (() => {
   // Comprobar edad >= 18
   const comprobarEdad = (e) => {
     const error = document.querySelector("#erredad");
-    if (Number(e.target.value, 10) < 18) {
+    if (Number(e.target.value) < 18) {
       error.textContent = "La edad debe ser mayor o igual a 18 años";
+     // error.innerText = "La edad debe ser mayor o igual a 18 años";
       e.target.focus();
     } else {
       error.textContent = "";
@@ -61,7 +62,7 @@ const FormularioModule = (() => {
   const validarInputs = () => {
     let hayErrores = false;
 
-    document.querySelectorAll(".classTexto").forEach((input) => {
+    document.querySelectorAll(".classTexto").forEach(input => {
       const error = document.querySelector(`#err${input.id}`);
       if (input.value.trim() === "") {
         error.textContent = "El campo es requerido";

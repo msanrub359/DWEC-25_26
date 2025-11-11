@@ -18,7 +18,6 @@ const TecladoInputsModule = (() => {
 
     elementosInput.forEach((element) => {
       element.addEventListener("keydown", keyDownHandler);
-      // element.addEventListener("keypress", keyPressHandler);
       element.addEventListener("keyup", keyUpHandler);
       element.addEventListener("input", inputHandler);
     });
@@ -27,23 +26,14 @@ const TecladoInputsModule = (() => {
   /** Evento: cuando se pulsa cualquier tecla */
   const keyDownHandler = (e) => {
     console.log(`keydown -> ${e.target.value}`, e);
-  };
-
-  /** Evento: cuando se pulsa una tecla que genera carácter */
-  const keyPressHandler = (e) => {
-    console.log(`keypress -> ${e.target.value}`, e);
-
-    // EJEMPLO 1: Permitir solo dígitos 0-9
-    if (!(e.code.startsWith("Digit"))) {
-      e.preventDefault();
+    //controlar la pulsación del teclado para que sea caracter o espacio en blannco
+    if (!(e.code.startsWith("Key") || e.code.startsWith('Space') || e.code.startsWith('Bac'))){
+          e.preventDefault(); //anular
     }
-
-    // EJEMPLO 2: Permitir solo letras A-Z y espacios
-    // if (!(e.code.startsWith("Key") || e.code === "Space")) {
-    //   e.preventDefault();
-    // }
+    
   };
 
+  
   /** Evento: cuando se suelta la tecla */
   const keyUpHandler = (e) => {
     console.log(`keyup -> ${e.target.value}`, e);

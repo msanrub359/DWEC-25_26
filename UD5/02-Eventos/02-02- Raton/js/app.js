@@ -27,32 +27,44 @@ const PintarInputsModule = (() => {
       element.addEventListener("mousedown", downMouse);
       element.addEventListener("mouseup", upMouse);
       element.addEventListener("mousemove", moveMouse);
+      
+    });
+    document.addEventListener("mouseup", ()=>{
+      pintar=false
     });
   };
 
   /** Evento: el ratón entra en el input */
   const overMouse = (e) => {
-   
+    e.target.style.backgroundColor="cyan"
   };
 
   /** Evento: el ratón sale del input */
   const outMouse = (e) => {
-    
+    e.target.style.backgroundColor=""
   };
 
   /** Evento: se pulsa un botón del ratón */
   const downMouse = (e) => {
-    
+    console.log(e);
+    //Qué tecla se ha pulsado del ratón
+    if (e.buttons==1){
+      pintar=true; //indicamos que puede pintar al realizarse el evento mouseMove
+      colorOrig=e.target.style.backgroundColor; //guardar el color de fondo
+    }
   };
 
   /** Evento: se suelta el botón del ratón */
   const upMouse = (e) => {
-    
+    pintar=false;
+     e.target.style.backgroundColor=colorOrig;
   };
 
   /** Evento: se mueve el ratón sobre el input */
   const moveMouse = (e) => {
-    
+    if (pintar){
+      e.target.style.backgroundColor="yellow";
+    }
   };
 
   // Exponer solo init públicamente

@@ -9,8 +9,9 @@ const EventoPropagacionModule = (() => {
     window.addEventListener("DOMContentLoaded", () => {
       console.log("DOM cargado, inicializando eventos");
       // Descomenta la función que quieras probar
-      eventoCaptura();
-      // eventoBurbujeo();
+       eventoCaptura();
+      //eventoBurbujeo();
+      
     });
   };
 
@@ -43,10 +44,10 @@ const EventoPropagacionModule = (() => {
       alert("Capa principal - Burbuja");
     }, false);
 
-    capaSecundaria.addEventListener("click", (event) => {
+    capaSecundaria.addEventListener("click", (e) => {
       alert("Capa secundaria - Burbuja");
       // Detiene la propagación hacia los elementos padres
-      // event.stopPropagation();
+       e.stopPropagation();
     }, false);
   };
 
