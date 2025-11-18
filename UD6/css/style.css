@@ -1,0 +1,82 @@
+ body{
+      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      margin:2rem;
+      line-height:1.6;
+      background:#f1f5f9;
+      color:#0f172a;
+    }
+
+    header, nav, main, aside, footer, section, article{
+      background:white;
+      border:1px solid #e2e8f0;
+      padding:1.5rem;
+      border-radius:14px;
+      margin-bottom:1.5rem;
+      box-shadow:0 4px 12px rgba(0,0,0,0.06);
+      transition:.25s ease;
+    }
+
+    header:hover, nav:hover, main:hover, aside:hover, footer:hover, section:hover, article:hover{
+      box-shadow:0 6px 18px rgba(0,0,0,0.1);
+      transform:translateY(-2px);
+    }
+
+    header{
+      background:linear-gradient(135deg,#e0f2fe,#f0f9ff);
+      border:none;
+    }
+
+    nav{
+      background:#f8fafc;
+    }
+
+    h1, h2, h3{
+      margin-top:0;
+      font-weight:700;
+    }
+
+    ul{padding-left:1.2rem}
+
+    button{
+      display:block;
+      width:100%;
+      margin-bottom:.5rem;
+      padding:.6rem 1rem;
+      border:none;
+      border-radius:10px;
+      background:#3b82f6;
+      color:white;
+      cursor:pointer;
+      font-size:.95rem;
+      transition:.2s;
+    }
+
+    button:hover{
+      background:#2563eb;
+    }
+
+    .demo-grid{
+      display:grid;
+      grid-template-columns:1fr 320px;
+      gap:1.5rem;
+    }
+
+    .highlight{
+      background:#fef3c7 !important;
+      padding:.4rem .6rem;
+      border-radius:8px;
+    }
+
+    .rounded{
+      border-radius:40px;
+    }
+
+    .shadow{
+      box-shadow:0 8px 25px rgba(0,0,0,0.65);
+    }
+
+    code{
+      background:#e0e7ff;
+      padding:.15rem .4rem;
+      border-radius:6px;
+    }
