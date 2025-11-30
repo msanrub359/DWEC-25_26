@@ -47,10 +47,11 @@ const LocalStorage = (() => {
    */
   const findCookie = () => {
     const dato = localStorage.getItem(clave.value.toLocaleLowerCase());
-    if (valor.value == "" || dato == null) {
+    if (clave.value == "" || dato == null) {
      mostrar.textContent = "cookie no existe";
     } else {
-      valor.value = desencriptar(dato);
+      valor.value =  desencriptar(dato);
+      mostrar.textContent = "";
     }
   };
   /**
@@ -60,7 +61,8 @@ const LocalStorage = (() => {
     let listar = "<h2>Listado de cookies</h2><ul>";
     
     for (let index = 0; index <localStorage.length; index++) {
-      listar +=`<li><strong></strong>${localStorage.key(index)}:  ${desencriptar(localStorage.getItem(localStorage.key(index)))}</li>`
+       //listar +=`<li><strong></strong>${localStorage.key(index)}:  ${localStorage.getItem(localStorage.key(index))}</li>`
+       listar +=`<li><strong></strong>${localStorage.key(index)}:  ${desencriptar(localStorage.getItem(localStorage.key(index)))}</li>`
        
     }
     listar+="</ul>"

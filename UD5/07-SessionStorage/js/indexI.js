@@ -1,58 +1,85 @@
+
 "use strict";
 
-const SessionStorage = () => {
+const SessionStorage = (() => {
   //declaración variables, funciones y eventos
-  let clave, valor;
+  let clave, valor, mostrar;
+  const passw = "Clave&12_23";
+
   const init = () => {
     document.addEventListener("DOMContentLoaded", () => {
       //establecer objetos
-      clave = document.getElementById("clave");
-      valor = document.getElementById("valor");
+      clave = document.querySelector("#clave");
+      valor = document.querySelector("#valor");
+      mostrar = document.querySelector("#capa");
 
       //eventos
-      document.getElementById("crear").addEventListener("click", addCookie);
-      document.getElementById("buscar").addEventListener("click", findCookie);
-      document.getElementById("listar").addEventListener("click", listCookie);
-      document.getElementById("eliminar").addEventListener("click", delCookie);
+      document.querySelector("#crear").addEventListener("click", addCookie);
+      document.querySelector("#buscar").addEventListener("click", findCookie);
+      document.querySelector("#listar").addEventListener("click", listCookie);
+      document.querySelector("#eliminar").addEventListener("click", delCookie);
     });
   };
-
+  /**
+  * Añade un nuevo elemento al SessionStorage (encriptado)
+  */
   const addCookie = () => {
-    sessionStorage.setItem(clave.value, encodeURIComponent(valor.value));
+    //encriptar
+    const valorEncriptado = CryptoJS.AES.encrypt(valor.value, passw).toString();
+    sessionStorage.setItem(clave.value.toLocaleLowerCase(), valorEncriptado);
     //limpiar campos
     clave.value = "";
     valor.value = "";
   };
+/**
+   * Elimina un elemento del SessionStorage
+   */
   const delCookie = () => {
-    if (sessionStorage.getItem(clave.value) != null) {
-      sessionStorage.removeItem(clave.value);
-      valor.value = "cookie borrada";
+    if (sessionStorage.getItem(clave.value.toLocaleLowerCase()) != null) {
+      sessionStorage.removeItem(clave.value.toLocaleLowerCase());
+      mostrar.textContent = "cookie borrada";
     } else {
-      valor.value = "cookie no existe";
+      mostrar.textContent = "cookie no existe";
     }
   };
+
+  /**
+   * Busca y desencripta un elemento del SessionStorage
+   */
   const findCookie = () => {
-    valor.value = decodeURIComponent(sessionStorage.getItem(clave.value));
-    if (valor.value == "" || valor.value == null) {
-      valor.value = "cookie no existe";
+    const dato = sessionStorage.getItem(clave.value.toLocaleLowerCase());
+    if (clave.value == "" || dato == null) {
+     mostrar.textContent = "cookie no existe";
+    } else {
+      valor.value = desencriptar(dato);
     }
   };
+  /**
+   * Lista todos los elementos del SessionStorage
+   */
   const listCookie = () => {
-    let listar = "<h2>Listado de cookies</h2>";
-    document.getElementById("capa").innerHTML = "";
+    let listar = "<h2>Listado de cookies</h2><ul>";
+    
     for (let index = 0; index < sessionStorage.length; index++) {
-      listar +=
-        sessionStorage.key(index) +
-        " = " +
-        decodeURIComponent(sessionStorage.getItem(sessionStorage.key(index))) +
-        "<br>";
+      listar +=`<li><strong></strong>${sessionStorage.key(index)}:  ${desencriptar(sessionStorage.getItem(sessionStorage.key(index)))}</li>`
+       
     }
-    document.getElementById("capa").innerHTML = listar;
+    listar+="</ul>"
+    mostrar.innerHTML = listar;
+  };
+
+  /**
+   * 
+   * @param {string} dato encriptado
+   * @returns {string} dato desencriptado
+   */
+  const desencriptar = (dato) => {
+    return CryptoJS.AES.decrypt(dato, passw).toString(CryptoJS.enc.Utf8);
   };
 
   return {
     init,
   };
-};
+})();
 
 SessionStorage.init();

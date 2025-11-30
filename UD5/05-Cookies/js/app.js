@@ -20,16 +20,16 @@ const Cookies = (() => {
 
   const crearCookie = () => {
     //creando una cookie de sesión
-    // document.cookie="clave='hola'";
+    // document.cookie="clave=hola";
     // document.cookie="clave=adiós";
     //document.cookie=`${clave.value}=${valor.value}`;
     //crear una cookie local
-    // const fechaActual=new Date();
-    // fechaActual.setTime(fechaActual.getTime()+304444);
-    //El atributo Secure solo permite que la cookie se envíe en protocolo seguro https
-    //El atrirbuto SameSite="Strict" la cookie solo se envía en solicitudes del mismo sitio
-    // console.log(fechaActual.toUTCString())
-    // document.cookie=`${clave.value}=${valor.value};expires=${fechaActual.toUTCString()};Secure;SameSite="Strict"`;
+    //  const fechaActual=new Date();
+    //  fechaActual.setTime(fechaActual.getTime()+304444);
+    // // El atributo Secure solo permite que la cookie se envíe en protocolo seguro https
+    // // El atrirbuto SameSite="Strict" la cookie solo se envía en solicitudes del mismo sitio
+    // console.log(fechaActual.toLocaleString())
+    //  document.cookie=`${clave.value}=${valor.value};expires=${fechaActual.toUTCString()};SameSite="Strict"`;
 
     // Crear cookie con codificación adecuada
     // max-age: duración en segundos (60 = 1 minuto)
@@ -41,11 +41,11 @@ const Cookies = (() => {
     //encodeURIComponent() en JavaScript se usa para codificar un valor de texto de modo que pueda
     //  ser transmitido de forma segura dentro de una URL o guardado en una cookie, sin que caracteres especiales
     //  causen errores o se interpreten incorrectamente
-    const cookieString = `${encodeURIComponent(clave.value).toLocaleLowerCase()}=${encodeURIComponent(valor.value)};max-age=3600;SameSite=Strict;path=/`;
+      const cookieString = `${encodeURIComponent(clave.value).toLocaleLowerCase()}=${encodeURIComponent(valor.value)};max-age=3600;SameSite=Strict;path=/`;
 
     // Para desarrollo local sin HTTPS, omitir Secure
     // En producción con HTTPS, añadir: ;Secure
-    document.cookie = cookieString;
+      document.cookie = cookieString;
     
      limpiar();
   };
@@ -55,7 +55,7 @@ const Cookies = (() => {
    */
   const limpiar = () => {
 
-    const inputText = document.querySelectorAll("input[type='text'");
+    const inputText = document.querySelectorAll("input[type='text']");
     //recorrer los input
     inputText.forEach(input => input.value = "")
   };
@@ -128,4 +128,4 @@ const Cookies = (() => {
   };
 })();
 
-Cookies.init();
+Cookies.init()

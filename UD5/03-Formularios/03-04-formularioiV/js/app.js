@@ -86,26 +86,37 @@ const FormularioModule = (() => {
 
     };
     const confirmarEnvio = (spinner, exito, objeto) => {
+const modal= new tingle.modal({
+    footer:true,
+    stickyfooter:false,
+    closeMethods:['overlay', 'button', 'escape'],
+    closeLabel: 'Cerrar'
+    
+})
+const mostrar='prueba'
+//establecer el contenido modal
+modal.setcontent(mostrar);
+modal.addFooterBtn("Aceptar" )
        
-        Swal.fire({
-            title: "Formulario IV",
-            html: "¿Desea <strong>enviar</strong> los datos del formulario?",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Enviar",
-            cancelButtonText: "No enviar"
+    //     Swal.fire({
+    //         title: "Formulario IV",
+    //         html: "¿Desea <strong>enviar</strong> los datos del formulario?",
+    //         showCancelButton: true,
+    //         confirmButtonColor: "#3085d6",
+    //         cancelButtonColor: "#d33",
+    //         confirmButtonText: "Enviar",
+    //         cancelButtonText: "No enviar"
         
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // Recoger datos con FormData y mostrar por consola
-            const datos = new FormData(objeto);
-            //JSON.stringify, convierte el objto JSON a cadena
-            console.log(`Datos enviados: ${JSON.stringify(Object.fromEntries(datos))}`);
-            spinner.style.display = "block"; //poner visible el spinner
-            exito.textContent = "Datos enviados";
-            }
-        });
+    //     }).then((result) => {
+    //         if (result.isConfirmed) {
+    //             // Recoger datos con FormData y mostrar por consola
+    //         const datos = new FormData(objeto);
+    //         //JSON.stringify, convierte el objto JSON a cadena
+    //         console.log(`Datos enviados: ${JSON.stringify(Object.fromEntries(datos))}`);
+    //         spinner.style.display = "block"; //poner visible el spinner
+    //         exito.textContent = "Datos enviados";
+    //         }
+    //     });
     }
     const resetFormulario = () => {
         form.reset(); //limpiar el formulario
