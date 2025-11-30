@@ -80,3 +80,6 @@
       padding:.15rem .4rem;
       border-radius:6px;
     }
+    .ocultar {
+      visibility: hidden;
+    }
