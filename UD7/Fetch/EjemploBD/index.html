@@ -7,10 +7,10 @@
     <title>Perros</title>
 
     <!-- Bootstrap CSS -->
-    <link href="../../librerias/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../librerias/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!--fontawesome -->
-    <link rel="stylesheet" href="../../librerias/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../../../librerias/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="../css/loader.css">
     <link rel="stylesheet" href="../css/style.css">
 
@@ -20,18 +20,27 @@
     <header></header>
 
     <section>
-        <div class="container">
-            <div class="text-center mb-3">
-                <button type="button" id="first" class="btn btn-success me-2">
-                    Mostrar el primero <i class="fa-solid fa-dog"></i>
-                </button>
-                <button type="button" id="all" class="btn btn-info">
-                    Mostrar todos <i class="fa-solid fa-bone"></i>
-                </button>
+        <div class="container py-4">
+            <!-- Título -->
+            <div class="text-center mb-4">
+                <h2 class="mb-3">Registro de Perros</h2>
             </div>
 
+            <!-- Controles de búsqueda -->
+            <div class="row justify-content-center mb-4 g-2">
+                <div class="col-md-4">
+                    <input type="text" id="inputChip" class="form-control form-control-lg"
+                        placeholder="Introduce el chip del perro">
+                </div>
+                <div class="col-md-auto">
+                    <button type="button" id="buscarChip" class="btn btn-primary">
+                        Buscar <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+               
+            </div>
 
-
+            <!-- Tabla de resultados -->
             <div class="table-responsive">
                 <table class="table table-striped table-hover">
                     <thead class="table-dark">
@@ -46,11 +55,13 @@
                         <!-- Filas generadas por JS -->
                     </tbody>
                 </table>
+
                 <!-- Spinner -->
-             <div id="spinner" class="loader ocultar"></div>
+                <div id="spinner" class="loader ocultar"></div>
             </div>
         </div>
     </section>
+
 
     <script src="./js/app.js"></script>
 </body>
