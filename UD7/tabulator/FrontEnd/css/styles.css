@@ -106,6 +106,7 @@ button.clear:hover {
 }
 
 /* Personalización de Tabulator */
+/* Personalización de Tabulator */
 .tabulator {
     font-size: 14px;
     border: none;
@@ -143,12 +144,22 @@ button.clear:hover {
     background: #fafafa;
 }
 
+/* ESTILOS PARA FILAS SELECCIONADAS - AÑADIR ESTO */
+.tabulator-row.tabulator-selected {
+    background-color:  #e9d5ff !important;
+}
+
+.tabulator-row.tabulator-selected:hover {
+    background-color: #d8b4fe  !important;
+    cursor: pointer;
+}
+
+
 .tabulator-footer {
     background: #f9fafb;
     border-top: 2px solid #e5e7eb;
     padding: 12px;
 }
-
 
 .status-badge {
     padding: 4px 12px;
