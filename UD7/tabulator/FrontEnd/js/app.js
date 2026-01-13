@@ -46,7 +46,7 @@
 
  */
 
-import {confTabulator} from './confTabulator.js'
+import { confTabulator } from './confTabulator.js'
 
 const Tabulator = (() => {
     let table;
@@ -56,13 +56,31 @@ const Tabulator = (() => {
             document.querySelector("#filtrar").addEventListener("input", filtrarFields);
             document.querySelector("#downloadXlsx").addEventListener("click", descargarXlsx);
             document.querySelector("#clearFilters").addEventListener("click", clearFiltros);
-            table=confTabulator(); //configurar tabla;
-           
+            table = confTabulator(); //configurar tabla;
+            cargarDatos();
+
         });
-            
+
     }
-    
-    
+
+    const cargarDatos = async () => {
+        try {
+            const response = await fetch(`http://localhost:3000/api/users`);
+            if (!response.ok) {
+                throw new Error("Error en la comunicación: " + response.status);
+            }
+            const data = await response.json();
+
+            // Cargar datos en la tabla con setData
+            table.setData(data.data);
+        } catch (error) {
+            console.log(error);
+        }
+
+
+    }
+
+
     /**
      * @function filtrarFields
      * @description Búsqueda global en todas las columnas
@@ -77,7 +95,7 @@ const Tabulator = (() => {
         // Busca el valor en múltiples campos simultáneamente
 
         //Establecer valor true o false si se quiere filtra por el Estado al ser un campo boolean
-       const val = e.target.value.toLowerCase();
+        const val = e.target.value.toLowerCase();
 
         let activeFilter = null;
         if (val === "activo") activeFilter = true;
@@ -91,10 +109,10 @@ const Tabulator = (() => {
                 { field: "email", type: "like", value: e.target.value },  // Busca en email
                 { field: "role", type: "like", value: e.target.value },   // Busca en rol
                 { field: "id", type: "like", value: e.target.value },     // Busca en ID
-                { field: "active", type: "=", value: activeFilter }, 
+                { field: "active", type: "=", value: activeFilter },  //busca por activo
             ]
         ]);
-           
+
         // Tipos de filtro disponibles:
         // "=" - igual exacto
         // "!=" - diferente
@@ -155,7 +173,7 @@ const Tabulator = (() => {
     // ========================================
     // LIMPIAR TODOS LOS FILTROS
     // ========================================
-    const clearFiltros = ()=> {
+    const clearFiltros = () => {
         // MÉTODO: clearFilter() - Elimina filtros programáticos (setFilter)
         table.clearFilter();
 
@@ -170,9 +188,9 @@ const Tabulator = (() => {
     };
 
 
-return { init }
+    return { init }
 
-}) ()
+})()
 
 Tabulator.init();
 
