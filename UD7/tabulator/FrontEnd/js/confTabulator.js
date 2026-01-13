@@ -2,6 +2,18 @@
  * @description Configuración de columnas de tabulator
 */
 const columns = [
+// COLUMNA DE SELECCIÓN
+    {
+        formatter: "rowSelection", 
+        titleFormatter: "rowSelection", 
+        hozAlign: "center", 
+        headerSort: false,
+        width: 40,
+        cellClick: function(e, cell) {
+            cell.getRow().toggleSelect();
+        }
+    },
+
     // COLUMNA ID
     {
         title: "ID",                    // Título que se muestra en el encabezado
@@ -120,11 +132,19 @@ export const confTabulator = () => {
         responsiveLayout: "collapse",
 
         // CARGA REMOTA DESDE NODE
-        ajaxURL: "http://localhost:3000/api/users",
+        //ajaxURL: "http://localhost:3000/api/users",
 
 
         // PAGINACIÓN: Activar paginación automática
-        pagination: 'remote',
+        // pagination: 'remote',
+
+        //   //indicar como leer el JSON. Devuelve solamente el array de usuarios
+        // ajaxResponse: (url, params, response) => {
+        //     return response.data;
+        // },
+
+        //CARGA LOCAL
+        pagination: true,
 
         // PAGINATIONSIZE: Número de filas por página por defecto
         paginationSize: 10,
@@ -136,17 +156,14 @@ export const confTabulator = () => {
         // PAGINATIONCOUNTER: Mostrar contador de filas
         // "rows" muestra "Mostrando X de Y filas"
         paginationCounter: "rows",
+       
+        
+         
+        
+      
 
-        //Esto es lo que devuelve el backEnd y necesitamos extraer 'data' para que muestre los datos en la tabla
-        //  {
-        //   data: [ {id:1, name:'Ana'}, ... ],
-        //   total: 100,
-        //   totalPages: 10
-        // }
-        //indicar como leer el JSON. Devuelve solamente el array de usuarios
-        ajaxResponse: (url, params, response) => {
-            return response.data;
-        },
+         selectable: true, // Esta es la opción correcta
+      
         // COLUMNS: Array de definición de columnas (configurado arriba)
         columns: columns,
 
@@ -184,6 +201,12 @@ export const confTabulator = () => {
                 }
             }
         }
+    });
+
+    //Cada que que se selecciona una fila se muestra el nº de filas seleccionadas
+    table.on("rowSelectionChanged", (data, rows)=>{
+        console.log( data.length);
+       
     });
     return table
 }
