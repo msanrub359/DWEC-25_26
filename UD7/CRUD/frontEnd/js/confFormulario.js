@@ -100,7 +100,8 @@ export const validarFormulario = () => {
       // Recoger datos del formulario
 
       const formData = {
-        id: document.querySelector("#nameUser").getAttribute("data-id"),
+        // id: document.querySelector("#nameUser").getAttribute("data-id"),
+        id: document.querySelector("#idUser").value.trim(),
         name: document.querySelector("#nameUser").value.trim(),
         email: document.querySelector("#emailUser").value.trim(),
         pass: document.querySelector("#passUser").value.trim(),
@@ -119,16 +120,18 @@ export const validarFormulario = () => {
         if (respuesta.id) {
           mensajeSweetAlert(`Usuario añadido con ID: ${respuesta.id}`, "success");
         } else {
-          mensajeSweetAlert(respuesta.message, "error");
+          mensajeSweetAlert(respuesta.message, "success");
         }
         refreshTable(); //  Refrescar tabla
         hideModal(); //oculta el modal
 
       } catch (error) {
-        mensajeSweetAlert(`${error.message}. ${error.error}`);
+        mensajeSweetAlert(`${error.message}. ${error.error}`, error);
       }
 
 
     });
 };
+
+
 
