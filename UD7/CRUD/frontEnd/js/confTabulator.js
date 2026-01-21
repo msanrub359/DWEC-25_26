@@ -142,11 +142,10 @@ const columns = [
             const rowData = cell.getRow().getData();
 
             if (target.classList.contains('btn-edit')) {
-                editar(rowData)
+                editarFila(rowData)
                
             } else if (target.classList.contains('btn-delete')) {
 
-                console.log('eliminar', rowData);
                 Swal.fire({
                     title: `¿Desea eliminar el registro con ${rowData.id}`,
                     showCancelButton: true,
@@ -172,12 +171,12 @@ const columns = [
     }
 ];
 
-const editar = (fila) => {
-    console.log(fila);
+const editarFila = (fila) => {
+   //cargar datos al formulario
 
     document.querySelector("#modalTitle").textContent = "Actualizar Usuario";
     document.querySelector("#nameUser").value = fila.name;
-    document.querySelector("#nameUser").setAttribute("data-id", fila.id);
+    document.querySelector("#idUser").value= fila.id; //guardar id
     document.querySelector("#emailUser").value = fila.email;
     document.querySelector("#passUser").value = '';
     document.querySelector("#roleUser").value = fila.role;
@@ -275,3 +274,4 @@ export const confTabulator = () => {
 
     return table
 }
+
